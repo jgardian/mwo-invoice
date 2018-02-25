@@ -41,4 +41,14 @@ public class Invoice {
 		}
 		return totalGross;
 	}
+
+	public int getNumber() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String preparePrint() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
