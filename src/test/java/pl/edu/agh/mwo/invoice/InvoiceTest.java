@@ -137,4 +137,10 @@ public class InvoiceTest {
 		int numberSecond = new Invoice().getNumber();
 		Assert.assertEquals(numberFirst, Matchers.lessThan(numberSecond));
 	}
+	public void testPrintContainsProductName(){
+		invoice.addProduct(new OtherProduct("Oscypek",new BigDecimal("2.50")));
+		String printed = invoice.preparePrint();
+		Assert.assertThat(printed, Matchers.containsString("Oscypek"));
+	}
+	
 }

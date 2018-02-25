@@ -3,11 +3,13 @@ package pl.edu.agh.mwo.invoice;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
 	private Map<Product, Integer> products = new HashMap<Product, Integer>();
+	private int number;
 
 	public void addProduct(Product product) {
 		addProduct(product, 1);
@@ -43,12 +45,19 @@ public class Invoice {
 	}
 
 	public int getNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		return number;
 	}
 
 	public String preparePrint() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String printed =String.valueOf(number);
+		
+		printed += products.keySet().stream().map(product ->
+		String.format("\n%s %d %s", product.getName(), products.get(product), product.getPrice())
+					).collect(Collectors.toList());
+				
+		printed += "Liczba pozycji: " + products.size()	;
+		return printed;
+				
+		
+			}
 }
